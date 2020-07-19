@@ -1,4 +1,40 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1>Hello </h1>
+<main role="main">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">相簿列表</h1>
+            <p class="lead text-muted">這是一個由網路爬蟲下來得相簿，主要爬取內容為 PPT 表特版。</p>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                {% for pic in pic_data %}
+                {% if not pic['paper_data'] == [] %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="{{pic['paper_data'][0]}}" style="height: 225px; width: auto"
+                             class="img-rounded">
+                        <div class="card-body">
+                            <p class="card-text">{{pic['title']}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="{{url_for('album', id=pic['id'])}}">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    </a>
+                                </div>
+                                <small class="text-muted">{{pic['author']}}</small>
+                                <small class="text-muted">{{pic['date']}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock %}

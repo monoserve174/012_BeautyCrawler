@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block body %}
+<main role="main">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">{{pic_data['title']}}</h1>
+            <a class="lead text-muted">{{pic_data['date']}}</a>
+            <a class="lead text-muted">{{pic_data['author']}}</a>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                {% for pic in pic_data['paper_data'] %}
+                <div class="col-6">
+                    <div class="card-deck mb-3 text-center">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-header"></div>
+                            <div class="card-body">
+                                <img src="{{pic}}" style="height: 225px; width: auto"
+                                     class="img-rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
